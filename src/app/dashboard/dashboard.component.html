@@ -1,0 +1,49 @@
+<div class="container">
+    <h1>Add a new idea</h1>
+
+    <form [formGroup]="ideaForm" (ngSubmit)="onSubmit(ideaForm)">
+        <div>
+            <label>Title: </label>
+            <input type="text" formControlName="title" />
+        </div>
+        <div>
+            <label>Description: </label>
+            <input type="text" formControlName="desc" />
+        </div>
+        <div>
+            <label>Tags: </label>
+            <input type="text" formControlName="tags" />
+        </div>
+        
+        <button type="submit" [disabled]="ideaForm.invalid">Add</button>
+    </form>
+
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col">Votes</th>
+                    <th scope="col">Creation Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of ideaList; let index = index">
+                    <th scope="row">{{index}}</th>
+                    <td>{{i.title}}</td>
+                    <td>{{i.desc}}</td>
+                    <td>{{i.tags}}</td>
+                    <td>{{i.upVote}}</td>
+                    <td>{{i.downVote}}</td>
+                    <td>{{i.creationDate | date: 'shortDate'}}</td>
+                    <button (click)="upVote(i)">Vote</button>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
